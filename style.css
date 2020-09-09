@@ -1,0 +1,77 @@
+html, body{
+    margin: 0;
+    font-family: "Comic Sans MS";
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: pink;
+}
+
+.lanes{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 100vh;
+}
+
+.lane{
+    background: rgb(2, 151, 144);
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.effect{
+    animation: pulse 0.5s alternate-reverse infinite;
+}
+
+@keyframes pulse {
+    from{
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.code{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.players{
+    
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    height: 150px;
+    border-top: 4px dashed rgba(214,132,16);
+}
+
+.player{
+    height: 64px;
+    width: 64px;
+    border-radius: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; 
+    
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid hotpink;
+}
+
+.effect-img{
+    height: auto;
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
