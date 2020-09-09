@@ -1,79 +1,108 @@
-html, body{
-    margin: 0;
-    font-family: "Comic Sans MS";
+html,
+body {
+  margin: 0;
+  font-family: "Comic Sans MS";
 }
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    background: pink;
+body {
+  background: pink;
 }
 
-.lanes{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    height: 100vh;
+.lobby {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.lane{
-    background: rgb(2, 151, 144);
-    border: 3px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+button {
+  padding: 8px 16px;
+  background: blue;
+  color: white;
+  border: 0;
+  outline: 0;
+  font-size: 1.6rem;
+  margin: 15px;
 }
 
-.effect{
-    animation: pulse 0.5s alternate-reverse infinite;
+input {
+  padding: 5px 10px;
+  font-size: 1.6rem;
+}
+
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 100vh;
+}
+
+.lane {
+  background: rgb(2, 151, 144);
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.effect {
+  animation: pulse 0.5s alternate-reverse infinite;
 }
 
 @keyframes pulse {
-    from{
-        opacity: 0.7;
-        transform: scale(1);
-    }
-    to{
-        opacity: 1;
-        transform: scale(1.05);
-    }
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
-.code{
-    text-align: center;
-    font-size: 2rem;
+.code {
+  text-align: center;
+  font-size: 2rem;
 }
 
-.players{
-    
-    display: flex;
-    justify-content: center;
-    padding: 50px 20px;
-    height: 150px;
-    border-top: 4px dashed rgba(214,132,16);
-    max-width: 100%;
-    flex-wrap: wrap;
-
+.players {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  height: 150px;
+  border-top: 4px dashed rgba(214, 132, 16);
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
-.player{
-    max-height: 64px;
-    max-width: 64px;
-    border-radius: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap; 
-    background: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid hotpink;
+.player {
+  max-height: 64px;
+  max-width: 64px;
+  border-radius: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  background: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid hotpink;
 }
 
-.effect-img{
-    height: auto;
-    width: 100px;
-    display: block;
-    margin: 0 auto;
+.effect-img {
+  height: auto;
+  width: 100px;
+  display: block;
+  margin: 0 auto;
 }
