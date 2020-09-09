@@ -52,16 +52,18 @@ body{
     padding: 50px 20px;
     height: 150px;
     border-top: 4px dashed rgba(214,132,16);
+    max-width: 100%;
+    flex-wrap: wrap;
+
 }
 
 .player{
-    height: 64px;
-    width: 64px;
+    max-height: 64px;
+    max-width: 64px;
     border-radius: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap; 
-    
     background: red;
     display: flex;
     justify-content: center;

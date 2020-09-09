@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="lobby">
+        <button id="create-room-btn">Create</button>
+        <input type="text" id="room-code"/>
+        <button id="join-room-btn">Join</button>
+
+    </div>
     <div class="game">
         <div class="lanes">
 
@@ -26,6 +32,12 @@
             <div class="effect"></div>
             <div class="players">
                 <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
+                <div class="player">Sinisa</div>
             </div>
         </div>
         <div class="lane">
@@ -42,6 +54,7 @@
                 <div class="player">Rajko</div>
             </div>
         </div>
+        
         <div class="lane">
             <p class="code">DAPSOKS</p>
             <div class="effect"></div>
@@ -50,6 +63,7 @@
     </div>
         
     </div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
