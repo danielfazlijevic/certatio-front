@@ -2,11 +2,12 @@ const socket = io("http://localhost:3000");
 
 socket.on("welcome", (data) => {
   console.log(data);
+  console.log("id korisnika je", socket.id);
 });
 
 const createRoomBtn = document.querySelector("#create-room-btn");
 
-createRoomBtn.addEventListener("click", (e) => {
+createRoomBtn.addEventListener("click", () => {
   socket.emit("room:create", "MilesGayne");
 });
 
