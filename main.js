@@ -18,4 +18,6 @@ socket.on("room:created", (data) => {
   //   alert(`Room created, your code is ${roomCode}`);
 });
 
-socket.emit("join room", { code: "abc" });
+socket.emit("join room", {
+  code: "abc"
+});
