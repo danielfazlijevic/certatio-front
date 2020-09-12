@@ -1,12 +1,11 @@
-export const generateLane = (laneIndex) => {
-
+export const generateLane = (laneIndex, state = {}) => {
     return `<div class="lane" data-js-index="${laneIndex}">
     <p class="code"></p>
     <div class="effect">
     </div>
     <div class="players">
     </div></div>`;
-}
+};
 
 export const generateLanes = (numberOfLanes) => {
     const lanesWrapper = document.createElement('div');
@@ -16,4 +15,5 @@ export const generateLanes = (numberOfLanes) => {
         lanesWrapper.innerHTML += generateLane(i);
 
     return lanesWrapper;
-}
+};
+

@@ -53,7 +53,7 @@ input {
 #game {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .game-info-panel {
@@ -62,13 +62,15 @@ input {
   align-items: center;
   flex-grow: 2;
   background-color: rgb(158, 145, 145);
-  max-width: 10%;
+  min-width: 15%;
+  max-width: 250px;
 }
 
 .lanes {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   height: 100vh;
+  width: 100%;
 }
 
 .lane {
@@ -77,6 +79,11 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 64px;
+}
+
+.lane.lane-inactive {
+  background: red;
 }
 
 .effect {
@@ -137,7 +144,6 @@ input {
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
-
 }
 
 .join-room-div p {
@@ -159,4 +165,26 @@ input {
 .lobby h1 {
   font-size: 3rem;
   margin-bottom: 0px;
+}
+
+#keyboard-input-panel {
+  display: none;
+}
+
+.game-started #keyboard-input-panel {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  font-size: 1.6rem;
+}
+
+.typed-code {
+  padding: 15px;
+  background: #ddd;
+  border: 4px solid limegreen;
 }
