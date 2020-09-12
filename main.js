@@ -1,5 +1,8 @@
 const socket = io("http://localhost:3000");
 
+socket.username = null;
+socket.currentRoom = null;
+
 socket.on("welcome", (data) => {
   console.log(data);
   console.log("id korisnika je", socket.id);
@@ -18,37 +21,50 @@ confirmUsernameBtn.addEventListener("click", () => {
 });
 
 //potvrda username
-socket.on("usernameConfirmed", () => {
+socket.on("usernameConfirmed", (username) => {
   document.getElementById("username-tab").style.display = "none";
   document.getElementById("join-tab").style.display = "flex";
+  socket.username = username;
 });
 
 //emitovanje zahteva za join
 joinRoomBtn.addEventListener("click", () => {
   socket.emit("room:join", roomCodeInput.value);
-  console.log("trying to join room");
-});
-
-//povratne informacije o kreiranoj sobi
-socket.on("room:created", (data) => {
-  console.log("You have joined room", data);
-
-  document.getElementById("lobby").style.display = "none";
 });
 
 //povratne informacije o uspesnoj konekciji u sobu
-socket.on("room:joined", (data) => {
-  console.log("You have joined room", data);
-  document.getElementById("room-name-display").innerHTML = "Room: " + data;
+socket.on("room:joined", (roomID) => {
+  console.log("You have joined room", roomID);
+  socket.currentRoom = roomID;
+  document.getElementById("room-name-display").innerHTML = "Room: " + roomID;
   document.getElementById("lobby").style.display = "none";
+  drawPlayers(socket.currentRoom);
 });
 
 //informacije o novom korisniku u sobi u kojoj je trenutni korisnik
-socket.on("room:userJoined", (userID) => {
-  console.log("User", userID, "has joined the room.");
+socket.on("room:userJoined", (data) => {
+  console.log("User", data.id, "has joined the room.");
+  console.log("User has the nickname", data.username);
+  drawPlayers(socket.currentRoom);
 });
 
 //notifikacija izlaska iz sobe
 socket.on("room:userLeft", (userID) => {
   console.log("User", userID, "has left the room.");
+  drawPlayers(socket.currentRoom);
 });
+
+function drawPlayers(currentRoom) {
+
+  socket.emit("request:playerlist", currentRoom);
+
+  socket.on("receive:playerlist", (playerList) => {
+
+    console.log(playerList);
+    $("#player-list").html("");
+    for (let player of playerList) {
+      $("#player-list").append("<p>" + player + "</p>");
+    }
+  });
+
+}
