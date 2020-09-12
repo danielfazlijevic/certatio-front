@@ -5,7 +5,7 @@ import {
 } from './generators';
 
 import {
-  setLaneData
+  refreshUI
 } from './laneManagement';
 
 const socket = io("localhost:3000");
@@ -30,7 +30,7 @@ function startEventListeners() {
 
 function onInput(e) {
   const typedCode = e.target.value;
-  const roomByCode = gameState.lanes.find(lane => lane.code.toUpperCase() === typedCode.toUpperCase());
+  const roomByCode = socket.gameState.lanes.find(lane => lane.code.toUpperCase() === typedCode.toUpperCase());
   // Room code typed
   if (roomByCode) {
     console.log('Moving into lane', roomByCode);
@@ -40,36 +40,9 @@ function onInput(e) {
 // TODO: Premestiti ovu funkciju da se pokrene tek kad se startuje igra
 startEventListeners();
 
-const gameState = {
-  lanes: [{
-      code: 'asdas',
-      active: true,
-      players: ['Daniel', 'Gayne']
-    },
-    {
-      code: 'aousd',
-      active: true,
-      players: []
-    },
-    {
-      code: 'oiasjd',
-      active: false,
-      players: ['Rajko']
-    },
-    {
-      code: 'aoisjd',
-      active: false,
-      players: []
-    }, {
-      code: 'poaks',
-      active: true,
-      players: ['Sinisa', 'Test']
-    }
-  ]
-};
-
 socket.username = null;
 socket.currentRoom = null;
+socket.gameState = null;
 
 socket.on("welcome", (data) => {
   console.log(data);
@@ -94,19 +67,20 @@ socket.on("usernameConfirmed", (username) => {
 });
 
 
-socket.on("createLanes", () => {
+socket.on("createLanes", (gameState) => {
   console.log('Generating lanes');
   const lanesElement = generateLanes(NUMBER_OF_LANES);
   gameWrapper.appendChild(lanesElement);
 
-  const lanes = document.querySelectorAll('.lane');
-
-  for (let i = 0; i < lanes.length; i++) {
-    setLaneData(lanes[i], gameState.lanes[i]);
-
-  }
-
+  refreshUI(gameState);
+  socket.gameState = gameState;
 });
+
+socket.on("refreshGameState", (gameState) => {
+
+  refreshUI(gameState);
+  socket.gameState = gameState;
+})
 
 //emitovanje zahteva za join
 joinRoomBtn.addEventListener("click", () => {
