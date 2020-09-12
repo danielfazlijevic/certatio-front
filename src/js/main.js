@@ -16,6 +16,7 @@ const joinRoomBtn = document.querySelector("#join-room-btn");
 const roomCodeInput = document.querySelector("#room-code");
 const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
 const usernameInput = document.querySelector("#username-input");
+const playerListElement = document.querySelector("#player-list");
 
 //slanje unetog username-a serveru
 confirmUsernameBtn.addEventListener("click", () => {
@@ -63,9 +64,9 @@ function drawPlayers(currentRoom) {
   socket.on("receive:playerlist", (playerList) => {
 
     console.log(playerList);
-    $("#player-list").html("");
-    for (let player of playerList) {
-      $("#player-list").append("<p>" + player + "</p>");
+    playerListElement.innerHTML = "";
+    for (let playerName of playerList) {
+      playerListElement.innerHTML += `<p> ${playerName} </p>`;
     }
   });
 
