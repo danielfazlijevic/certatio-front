@@ -7,23 +7,30 @@ socket.on("welcome", (data) => {
     "Socket ID: " + socket.id;
 });
 
-const createRoomBtn = document.querySelector("#create-room-btn");
 const joinRoomBtn = document.querySelector("#join-room-btn");
 const roomCodeInput = document.querySelector("#room-code");
+const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
+const usernameInput = document.querySelector("#username-input");
 
-//emitovanje zahteva za create
-createRoomBtn.addEventListener("click", () => {
-  socket.emit("room:create");
+//slanje unetog username-a serveru
+confirmUsernameBtn.addEventListener("click", () => {
+  socket.emit("createUsername", usernameInput.value);
+});
+
+//potvrda username
+socket.on("usernameConfirmed", () => {
+  document.getElementById("username-tab").style.display = "none";
+  document.getElementById("join-tab").style.display = "flex";
 });
 
 //emitovanje zahteva za join
 joinRoomBtn.addEventListener("click", () => {
   socket.emit("room:join", roomCodeInput.value);
+  console.log("trying to join room");
 });
 
 //povratne informacije o kreiranoj sobi
 socket.on("room:created", (data) => {
-  //   const roomCode = data.roomCode;
   console.log("You have joined room", data);
 
   document.getElementById("lobby").style.display = "none";
@@ -32,6 +39,7 @@ socket.on("room:created", (data) => {
 //povratne informacije o uspesnoj konekciji u sobu
 socket.on("room:joined", (data) => {
   console.log("You have joined room", data);
+  document.getElementById("room-name-display").innerHTML = "Room: " + data;
   document.getElementById("lobby").style.display = "none";
 });
 
