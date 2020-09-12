@@ -50,13 +50,6 @@ input {
   border: 3px solid rgb(255, 255, 255);
 }
 
-#room-code {
-  /*input style*/
-  width: 250px;
-  height: 50px;
-  margin: 15px;
-}
-
 .game {
   display: flex;
   flex-direction: row;
