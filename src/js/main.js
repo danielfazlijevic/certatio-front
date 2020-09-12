@@ -1,6 +1,21 @@
 import io from 'socket.io-client';
 
+import {
+  generateLanes
+} from './generators';
+
 const socket = io("localhost:3000");
+
+const joinRoomBtn = document.querySelector("#join-room-btn");
+const roomCodeInput = document.querySelector("#room-code");
+const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
+const usernameInput = document.querySelector("#username-input");
+const playerListElement = document.querySelector("#player-list");
+
+const gameWrapper = document.querySelector('#game');
+
+
+const NUMBER_OF_LANES = 5;
 
 socket.username = null;
 socket.currentRoom = null;
@@ -8,15 +23,12 @@ socket.currentRoom = null;
 socket.on("welcome", (data) => {
   console.log(data);
   console.log("id korisnika je", socket.id);
+  console.log(socket);
   document.getElementById("player-id-paragraph").innerHTML =
     "Socket ID: " + socket.id;
 });
 
-const joinRoomBtn = document.querySelector("#join-room-btn");
-const roomCodeInput = document.querySelector("#room-code");
-const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
-const usernameInput = document.querySelector("#username-input");
-const playerListElement = document.querySelector("#player-list");
+
 
 //slanje unetog username-a serveru
 confirmUsernameBtn.addEventListener("click", () => {
@@ -28,6 +40,13 @@ socket.on("usernameConfirmed", (username) => {
   document.getElementById("username-tab").style.display = "none";
   document.getElementById("join-tab").style.display = "flex";
   socket.username = username;
+});
+
+
+socket.on("createLanes", () => {
+  console.log('Generating lanes');
+  const lanesElement = generateLanes(NUMBER_OF_LANES);
+  gameWrapper.appendChild(lanesElement);
 });
 
 //emitovanje zahteva za join
