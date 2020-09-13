@@ -95,6 +95,7 @@ input {
   flex-direction: column;
   justify-content: space-between;
   padding-top: 10px;
+  transition: 1s;
 }
 
 .lane.lane-inactive {
