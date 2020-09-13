@@ -20,8 +20,6 @@ const gameWrapper = document.querySelector("#game");
 
 const codeInput = document.querySelector("#typed-code");
 
-const NUMBER_OF_LANES = 5;
-
 function startEventListeners() {
   codeInput.addEventListener("input", onInput);
   console.log(codeInput);
@@ -68,7 +66,7 @@ socket.on("usernameConfirmed", (username) => {
 
 socket.on("createLanes", (gameState) => {
   console.log("Generating lanes");
-  const lanesElement = generateLanes(NUMBER_OF_LANES);
+  const lanesElement = generateLanes(gameState.lanes.length);
   gameWrapper.appendChild(lanesElement);
 
   refreshUI(gameState);
