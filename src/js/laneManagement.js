@@ -23,6 +23,19 @@ export const refreshUI = (gameState) => {
         setLaneData(lanes[i], gameState.lanes[i]);
     }
 
+    drawPlayers(gameState.playerlist)
+
     // const codeInput = document.querySelector("#typed-code");
     // codeInput.value = "";
+}
+
+function drawPlayers(playerlist) {
+
+    const playerListElement = document.querySelector("#player-list");
+
+    playerListElement.innerHTML = "";
+    for (let player of playerlist) {
+        playerListElement.innerHTML += `<p> ${player.username} </p>`;
+    }
+
 }
