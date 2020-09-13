@@ -204,10 +204,10 @@ input {
 }
 
 #typed-code {
-  color: rgb(20, 85, 52);
+  color: rgb(56, 30, 0);
   font-family: 'Nunito', sans-serif;
   text-align: center;
   padding: 15px;
   background: rgb(255, 255, 255);
-  border: 4px solid rgb(127, 231, 42);
+  border: 4px solid rgb(255, 196, 0);
 }

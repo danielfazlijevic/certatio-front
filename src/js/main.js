@@ -1,8 +1,12 @@
 import io from "socket.io-client";
 
-import { generateLanes } from "./generators";
+import {
+  generateLanes
+} from "./generators";
 
-import { refreshUI } from "./laneManagement";
+import {
+  refreshUI
+} from "./laneManagement";
 
 const socket = io("localhost:3000");
 
@@ -85,8 +89,10 @@ joinRoomBtn.addEventListener("click", () => {
 socket.on("room:joined", (roomID) => {
   console.log("You have joined room", roomID);
   socket.currentRoom = roomID;
+  let bodyDiv = document.getElementById("page-body");
+  bodyDiv.classList.add("game-started");
   codeInput.focus();
-  document.getElementById("room-name-display").innerHTML = "Room: " + roomID;
+  document.getElementById("room-name-display").innerHTML = 'Room: "' + roomID + '"';
   document.getElementById("lobby").style.display = "none";
   drawPlayers(socket.currentRoom);
 });
