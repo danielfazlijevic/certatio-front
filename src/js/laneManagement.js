@@ -9,8 +9,8 @@ export const setLaneData = (laneElement, laneData) => {
     laneElement.querySelector('.code').textContent = laneData.code;
     console.log("setting lane code to ", laneData.code);
 
-    for (const player of laneData.players) {
-        laneElement.querySelector('.players').innerHTML += `<div class="player">${player}</div>`;
+    for (let player of laneData.players) {
+        laneElement.querySelector('.players').innerHTML += `<div class="player">${player.username}</div>`;
     }
 
 };
