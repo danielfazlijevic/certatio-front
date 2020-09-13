@@ -21,6 +21,8 @@ export const refreshUI = (gameState) => {
 
     for (let i = 0; i < lanes.length; i++) {
         setLaneData(lanes[i], gameState.lanes[i]);
-
     }
+
+    // const codeInput = document.querySelector("#typed-code");
+    // codeInput.value = "";
 }

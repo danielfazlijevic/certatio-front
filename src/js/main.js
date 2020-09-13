@@ -1,12 +1,8 @@
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-import {
-  generateLanes
-} from './generators';
+import { generateLanes } from "./generators";
 
-import {
-  refreshUI
-} from './laneManagement';
+import { refreshUI } from "./laneManagement";
 
 const socket = io("localhost:3000");
 
@@ -16,25 +12,27 @@ const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
 const usernameInput = document.querySelector("#username-input");
 const playerListElement = document.querySelector("#player-list");
 
-const gameWrapper = document.querySelector('#game');
+const gameWrapper = document.querySelector("#game");
 
-const codeInput = document.querySelector('#typed-code');
+const codeInput = document.querySelector("#typed-code");
 
 const NUMBER_OF_LANES = 5;
 
-
 function startEventListeners() {
-  codeInput.addEventListener('input', onInput);
+  codeInput.addEventListener("input", onInput);
   console.log(codeInput);
 }
 
 function onInput(e) {
   const typedCode = e.target.value;
-  const roomByCode = socket.gameState.lanes.find(lane => lane.code.toUpperCase() === typedCode.toUpperCase());
+  const roomByCode = socket.gameState.lanes.find(
+    (lane) => lane.code.toUpperCase() === typedCode.toUpperCase()
+  );
   // Room code typed
   if (roomByCode) {
-    console.log('Moving into lane', roomByCode);
+    console.log("Moving into lane", roomByCode);
     socket.emit("code:typed", typedCode);
+    e.target.value = "";
   }
 }
 // TODO: Premestiti ovu funkciju da se pokrene tek kad se startuje igra
@@ -52,8 +50,6 @@ socket.on("welcome", (data) => {
     "Socket ID: " + socket.id;
 });
 
-
-
 //slanje unetog username-a serveru
 confirmUsernameBtn.addEventListener("click", () => {
   socket.emit("createUsername", usernameInput.value);
@@ -66,9 +62,8 @@ socket.on("usernameConfirmed", (username) => {
   socket.username = username;
 });
 
-
 socket.on("createLanes", (gameState) => {
-  console.log('Generating lanes');
+  console.log("Generating lanes");
   const lanesElement = generateLanes(NUMBER_OF_LANES);
   gameWrapper.appendChild(lanesElement);
 
@@ -77,10 +72,9 @@ socket.on("createLanes", (gameState) => {
 });
 
 socket.on("refreshGameState", (gameState) => {
-
   refreshUI(gameState);
   socket.gameState = gameState;
-})
+});
 
 //emitovanje zahteva za join
 joinRoomBtn.addEventListener("click", () => {
@@ -91,6 +85,7 @@ joinRoomBtn.addEventListener("click", () => {
 socket.on("room:joined", (roomID) => {
   console.log("You have joined room", roomID);
   socket.currentRoom = roomID;
+  codeInput.focus();
   document.getElementById("room-name-display").innerHTML = "Room: " + roomID;
   document.getElementById("lobby").style.display = "none";
   drawPlayers(socket.currentRoom);
@@ -110,16 +105,13 @@ socket.on("room:userLeft", (userID) => {
 });
 
 function drawPlayers(currentRoom) {
-
   socket.emit("request:playerlist", currentRoom);
 
   socket.on("receive:playerlist", (playerList) => {
-
     console.log(playerList);
     playerListElement.innerHTML = "";
     for (let playerName of playerList) {
       playerListElement.innerHTML += `<p> ${playerName} </p>`;
     }
   });
-
 }

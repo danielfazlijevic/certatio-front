@@ -61,9 +61,21 @@ input {
   flex-direction: column;
   align-items: center;
   flex-grow: 2;
-  background-color: rgb(158, 145, 145);
-  min-width: 15%;
-  max-width: 250px;
+  background-color: rgb(41, 41, 41);
+  min-width: 20%;
+  max-width: 350px;
+  color: white;
+}
+
+.game-info-panel p {
+  font-size: 2rem;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+#room-name-display {
+  margin: 35px;
 }
 
 .lanes {
@@ -74,16 +86,16 @@ input {
 }
 
 .lane {
-  background: rgb(2, 151, 144);
-  border: 3px solid black;
+  background: rgb(92, 204, 148);
+  border: 5px solid rgb(41, 41, 41);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 64px;
+  padding-top: 10px;
 }
 
 .lane.lane-inactive {
-  background: red;
+  background: rgb(214, 0, 64);
 }
 
 .effect {
@@ -104,31 +116,38 @@ input {
 
 .code {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  color: white;
+  font-weight: bold;
+  font-family: 'Nunito', sans-serif;
 }
 
 .players {
+  background-color: rgba(56, 56, 56, 0.678);
   display: flex;
   justify-content: center;
   padding: 50px 20px;
   height: 150px;
-  border-top: 4px dashed rgba(214, 132, 16);
+  /* border-top: 3px solid rgb(255, 255, 255); */
   max-width: 100%;
   flex-wrap: wrap;
 }
 
 .player {
-  max-height: 64px;
-  max-width: 64px;
-  border-radius: 100%;
-  text-overflow: ellipsis;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  margin: 3px;
+  padding: 10px;
   overflow: hidden;
   white-space: nowrap;
-  background: red;
+  background: rgb(13, 159, 196);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid hotpink;
+  color: white;
+  font-family: 'Bebas Neue', cursive;
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .effect-img {
@@ -172,19 +191,23 @@ input {
 }
 
 .game-started #keyboard-input-panel {
-  position: fixed;
+  /* position: fixed;
   top: 25px;
   left: 0;
   width: 100%;
-  right: 0;
+  right: 0; */
+  margin-top: 25px;
   display: flex;
   justify-content: center;
   z-index: 1;
   font-size: 1.6rem;
 }
 
-.typed-code {
+#typed-code {
+  color: rgb(20, 85, 52);
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
   padding: 15px;
-  background: #ddd;
-  border: 4px solid limegreen;
+  background: rgb(255, 255, 255);
+  border: 4px solid rgb(127, 231, 42);
 }
