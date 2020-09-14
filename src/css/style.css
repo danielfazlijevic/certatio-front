@@ -265,7 +265,7 @@ input {
   font-family: 'Nunito', sans-serif;
 }
 
-.deathscreen {
+#deathscreen {
   border-radius: 15px;
   background-color: rgb(68, 12, 12);
   padding: 25px;
@@ -297,12 +297,12 @@ input {
 
 #refresh-page-btn {
   border-radius: 0;
-  background-color: rgb(189, 44, 0);
+  background-color: rgb(32, 32, 32);
   border: none;
   padding: 15px 25px;
 }
 
 #refresh-page-btn:hover {
   color: white;
-  background-color: rgb(255, 72, 0);
+  background-color: rgb(68, 68, 68);
 }

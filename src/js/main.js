@@ -130,7 +130,19 @@ socket.on("room:userLeft", (userID) => {
 
 socket.on("enter-spectator-screen", (round) => {
   document.getElementById("spectator-overlay").style.display = "flex";
-  document.getElementById("rounds-survived-info").innerHTML = `You have survived for ${round} rounds!`
+  document.getElementById("rounds-survived-info").innerHTML = `You have survived for ${round} rounds!`;
   codeInput.style.visibility = "hidden";
-  alive = false;
+});
+
+socket.on("enter-winner-screen", (round) => {
+  document.getElementById("spectator-overlay").style.display = "flex";
+  document.getElementById("spectator-title").innerHTML = "WINNER!";
+  document.getElementById("rounds-survived-info").innerHTML = `You have survived for ${round} rounds!`;
+  document.getElementById("deathscreen").style.backgroundColor = "rgb(8, 121, 77)";
+
+  codeInput.style.visibility = "hidden";
+});
+
+socket.on("ask-to-leave", () => {
+  socket.emit("leave-room");
 });
