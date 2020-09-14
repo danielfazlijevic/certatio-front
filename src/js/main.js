@@ -62,6 +62,7 @@ socket.on("game:signalAdmin", () => {
   document.getElementById("number-of-lanes-input").style.display = "block";
   document.getElementById("start-game-btn").style.display = "block";
   document.getElementById("host-or-player-text").innerHTML = "Number of lanes (2-6):";
+  numberOfLanesInput.focus();
 });
 
 //startovanje igre admin
@@ -71,6 +72,7 @@ startGameBtn.addEventListener("click", () => {
 
 socket.on("game:started", () => {
   document.getElementById("pre-game-lobby").style.display = "none";
+  codeInput.focus();
 });
 
 //potvrda username
@@ -106,7 +108,6 @@ socket.on("room:joined", (roomID) => {
   socket.currentRoom = roomID;
   let bodyDiv = document.getElementById("page-body");
   bodyDiv.classList.add("game-started");
-  codeInput.focus();
   document.getElementById("room-name-display").innerHTML = 'Room: "' + roomID + '"';
   document.getElementById("lobby").style.display = "none";
 });
