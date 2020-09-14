@@ -23,19 +23,26 @@ export const refreshUI = (gameState) => {
         setLaneData(lanes[i], gameState.lanes[i]);
     }
 
-    drawPlayers(gameState.playerlist)
+    drawPlayers(gameState.playerlist, gameState.deadPlayerlist)
 
     // const codeInput = document.querySelector("#typed-code");
     // codeInput.value = "";
 }
 
-function drawPlayers(playerlist) {
+function drawPlayers(playerlist, deadPlayerlist) {
 
     const playerListElement = document.querySelector("#player-list");
 
     playerListElement.innerHTML = "";
+
     for (let player of playerlist) {
-        playerListElement.innerHTML += `<p> ${player.username} </p>`;
+
+        playerListElement.innerHTML += `<p style="color:white"> ${player.username}, ${player.lives} </p>`;
+    }
+
+    for (let player of deadPlayerlist) {
+
+        playerListElement.innerHTML += `<p style="color:red"> ${player.username} </p>`;
     }
 
 }

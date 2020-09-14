@@ -16,6 +16,7 @@ const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
 const usernameInput = document.querySelector("#username-input");
 const startGameBtn = document.querySelector("#start-game-btn");
 const numberOfLanesInput = document.querySelector("#number-of-lanes-input");
+const refreshPageBtn = document.querySelector("#refresh-page-btn");
 
 const gameWrapper = document.querySelector("#game");
 
@@ -23,6 +24,9 @@ const codeInput = document.querySelector("#typed-code");
 
 function startEventListeners() {
   codeInput.addEventListener("input", onInput);
+  refreshPageBtn.addEventListener("click", () => {
+    location.reload();
+  })
   console.log(codeInput);
 }
 
@@ -122,4 +126,11 @@ socket.on("room:userJoined", (data) => {
 //notifikacija izlaska iz sobe
 socket.on("room:userLeft", (userID) => {
   console.log("User", userID, "has left the room.");
+});
+
+socket.on("enter-spectator-screen", (round) => {
+  document.getElementById("spectator-overlay").style.display = "flex";
+  document.getElementById("rounds-survived-info").innerHTML = `You have survived for ${round} rounds!`
+  codeInput.style.visibility = "hidden";
+  alive = false;
 });
