@@ -208,10 +208,44 @@ input {
 }
 
 #typed-code {
-  color: rgb(56, 30, 0);
+  color: rgb(41, 41, 41);
   font-family: 'Nunito', sans-serif;
   text-align: center;
   padding: 15px;
   background: rgb(255, 255, 255);
   border: 4px solid rgb(255, 196, 0);
+}
+
+#pre-game-lobby {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+}
+
+#pre-game-lobby h1 {
+  font-size: 4rem;
+}
+
+#start-game-btn {
+  display: none;
+  background-color: rgb(51, 51, 51);
+  border-radius: 0;
+  padding: 15px 25px;
+}
+
+#start-game-btn:hover {
+  color: white;
+  background-color: rgb(124, 124, 124);
+}
+
+#number-of-lanes-input {
+  display: none;
+  border: 4px solid rgb(51, 51, 51);
+  width: 75px;
+  text-align: center;
 }

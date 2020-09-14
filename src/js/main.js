@@ -14,6 +14,8 @@ const joinRoomBtn = document.querySelector("#join-room-btn");
 const roomCodeInput = document.querySelector("#room-code");
 const confirmUsernameBtn = document.querySelector("#confirm-username-btn");
 const usernameInput = document.querySelector("#username-input");
+const startGameBtn = document.querySelector("#start-game-btn");
+const numberOfLanesInput = document.querySelector("#number-of-lanes-input");
 
 const gameWrapper = document.querySelector("#game");
 
@@ -56,6 +58,21 @@ confirmUsernameBtn.addEventListener("click", () => {
   socket.emit("createUsername", usernameInput.value);
 });
 
+socket.on("game:signalAdmin", () => {
+  document.getElementById("number-of-lanes-input").style.display = "block";
+  document.getElementById("start-game-btn").style.display = "block";
+  document.getElementById("host-or-player-text").innerHTML = "Number of lanes (2-6):";
+});
+
+//startovanje igre admin
+startGameBtn.addEventListener("click", () => {
+  socket.emit("game:start", numberOfLanesInput.value);
+});
+
+socket.on("game:started", () => {
+  document.getElementById("pre-game-lobby").style.display = "none";
+});
+
 //potvrda username
 socket.on("usernameConfirmed", (username) => {
   document.getElementById("username-tab").style.display = "none";
@@ -73,6 +90,7 @@ socket.on("createLanes", (gameState) => {
 });
 
 socket.on("refreshGameState", (gameState) => {
+  console.log("primio zahtev da refreshujem");
   refreshUI(gameState);
   socket.gameState = gameState;
 });
