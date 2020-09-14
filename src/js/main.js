@@ -5,7 +5,8 @@ import {
 } from "./generators";
 
 import {
-  refreshUI
+  refreshUI,
+  displayTime
 } from "./laneManagement";
 
 const socket = io("localhost:3000");
@@ -77,6 +78,8 @@ startGameBtn.addEventListener("click", () => {
 socket.on("game:started", () => {
   document.getElementById("pre-game-lobby").style.display = "none";
   codeInput.style.visibility = "visible";
+  document.getElementById("round-number").style.visibility = "visible";
+  document.getElementById("time-remaining-box").style.visibility = "visible";
   codeInput.focus();
 });
 
@@ -144,5 +147,11 @@ socket.on("enter-winner-screen", (round) => {
 });
 
 socket.on("ask-to-leave", () => {
+  document.getElementById("round-number").style.visibility = "hidden";
+  document.getElementById("time-remaining-box").style.visibility = "hidden";
   socket.emit("leave-room");
+});
+
+socket.on("reset-timer", (roundTime) => {
+  displayTime(roundTime);
 });

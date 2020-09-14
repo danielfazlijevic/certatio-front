@@ -24,6 +24,7 @@ export const refreshUI = (gameState) => {
     }
 
     drawPlayers(gameState.playerlist, gameState.deadPlayerlist)
+    displayRound(gameState.round);
 
     // const codeInput = document.querySelector("#typed-code");
     // codeInput.value = "";
@@ -44,5 +45,29 @@ function drawPlayers(playerlist, deadPlayerlist) {
 
         playerListElement.innerHTML += `<p style="color:red"> ${player.username} </p>`;
     }
+
+}
+
+function displayRound(round) {
+
+    const roundNumberElement = document.querySelector("#round-number");
+    roundNumberElement.innerHTML = `Round: ${round}`;
+}
+
+export const displayTime = (roundTime) => {
+
+    const timeDisplayElement = document.querySelector("#time-remaining");
+    timeDisplayElement.innerHTML = `${roundTime/1000}`;
+
+    let secondsVariable = setInterval(() => {
+        roundTime = roundTime - 1000;
+        if (roundTime <= 0) {
+            clearInterval(secondsVariable);
+            return;
+        }
+        console.log("displaying", roundTime / 1000, "seconds");
+        timeDisplayElement.innerHTML = `${roundTime/1000}`;
+
+    }, 1000);
 
 }
