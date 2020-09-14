@@ -72,6 +72,7 @@ startGameBtn.addEventListener("click", () => {
 
 socket.on("game:started", () => {
   document.getElementById("pre-game-lobby").style.display = "none";
+  codeInput.style.visibility = "visible";
   codeInput.focus();
 });
 
