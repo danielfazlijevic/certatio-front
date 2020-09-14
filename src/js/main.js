@@ -155,3 +155,7 @@ socket.on("ask-to-leave", () => {
 socket.on("reset-timer", (roundTime) => {
   displayTime(roundTime);
 });
+
+socket.on("error-game-in-progress", (roomID) => {
+  document.getElementById("join-error-message").innerHTML = `Game in room "${roomID}" is already in progress. Try another room.`;
+});
