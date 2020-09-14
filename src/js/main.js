@@ -9,7 +9,10 @@ import {
   displayTime
 } from "./laneManagement";
 
-const socket = io("localhost:3000");
+
+const serverHost = process.env.SERVER_HOST || "localhost:3000";
+
+const socket = io(serverHost);
 
 const joinRoomBtn = document.querySelector("#join-room-btn");
 const roomCodeInput = document.querySelector("#room-code");
@@ -27,7 +30,7 @@ function startEventListeners() {
   codeInput.addEventListener("input", onInput);
   refreshPageBtn.addEventListener("click", () => {
     location.reload();
-  })
+  });
   console.log(codeInput);
 }
 
