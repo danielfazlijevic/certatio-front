@@ -3,10 +3,15 @@ import {
   generateLanes
 } from "./generators";
 import {
-  displayTime, refreshUI
+  displayTime,
+  refreshUI,
+  highlightPlayerLane
 } from "./laneManagement";
 
-import { playLobbyMusic, switchToGameMusic } from './sounds';
+import {
+  playLobbyMusic,
+  switchToGameMusic
+} from './sounds';
 
 
 
@@ -101,12 +106,14 @@ socket.on("createLanes", (gameState) => {
   gameWrapper.appendChild(lanesElement);
 
   refreshUI(gameState);
+  highlightPlayerLane(gameState, socket.id);
   socket.gameState = gameState;
 });
 
 socket.on("refreshGameState", (gameState) => {
   console.log("primio zahtev da refreshujem");
   refreshUI(gameState);
+  highlightPlayerLane(gameState, socket.id);
   socket.gameState = gameState;
 });
 

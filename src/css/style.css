@@ -322,3 +322,7 @@ input {
   justify-content: center;
   align-items: center;
 }
+
+.currentLane {
+  border: 5px solid rgb(255, 230, 0) !important;
+}

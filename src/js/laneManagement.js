@@ -1,19 +1,36 @@
 export const setLaneData = (laneElement, laneData) => {
     // Reset current lane info
-    console.log('setting lane data for ', laneElement);
+    // console.log('setting lane data for ', laneElement);
     laneElement.classList.remove('lane-active', 'lane-inactive');
     laneElement.querySelector('.players').innerHTML = "";
 
     laneElement.classList.add(laneData.active ? 'lane-active' : 'lane-inactive');
 
     laneElement.querySelector('.code').textContent = laneData.code;
-    console.log("setting lane code to ", laneData.code);
+    // console.log("setting lane code to ", laneData.code);
 
     for (let player of laneData.players) {
         laneElement.querySelector('.players').innerHTML += `<div class="player">${player.username}</div>`;
     }
 
 };
+
+export const highlightPlayerLane = (gameState, ID) => {
+
+    const lanes = document.querySelectorAll('.lane');
+
+    for (let lane of lanes) {
+        lane.classList.remove("currentLane");
+    }
+
+    for (let i = 0; i < gameState.lanes.length; i++) {
+
+        if (gameState.lanes[i].players.filter(player => player.ID === ID).length > 0) {
+            lanes[i].classList.add("currentLane");
+        }
+    }
+
+}
 
 export const refreshUI = (gameState) => {
 
