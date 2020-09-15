@@ -16,7 +16,7 @@ import {
 
 
 
-const serverHost = "localhost:3000";
+const serverHost = process.env.SERVER_HOST || "localhost:3000";
 
 const socket = io(serverHost);
 
