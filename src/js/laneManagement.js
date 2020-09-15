@@ -57,17 +57,25 @@ function displayRound(round) {
 export const displayTime = (roundTime) => {
 
     const timeDisplayElement = document.querySelector("#time-remaining");
-    timeDisplayElement.innerHTML = `${roundTime/1000}`;
+    if (roundTime % 1000 == 0) {
+        timeDisplayElement.innerHTML = `${roundTime/1000}.0`;
+    } else {
+        timeDisplayElement.innerHTML = `${roundTime/1000}`;
+    }
 
     let secondsVariable = setInterval(() => {
-        roundTime = roundTime - 1000;
+        roundTime = roundTime - 100;
         if (roundTime <= 0) {
             clearInterval(secondsVariable);
             return;
         }
         console.log("displaying", roundTime / 1000, "seconds");
-        timeDisplayElement.innerHTML = `${roundTime/1000}`;
+        if (roundTime % 1000 == 0) {
+            timeDisplayElement.innerHTML = `${roundTime/1000}.0`;
+        } else {
+            timeDisplayElement.innerHTML = `${roundTime/1000}`;
+        }
 
-    }, 1000);
+    }, 100);
 
 }
