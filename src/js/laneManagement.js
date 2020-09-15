@@ -23,12 +23,12 @@ export const refreshUI = (gameState) => {
         setLaneData(lanes[i], gameState.lanes[i]);
     }
 
-    drawPlayers(gameState.playerlist, gameState.deadPlayerlist)
+    drawPlayers(gameState.playerlist, gameState.deadPlayerlist);
     displayRound(gameState.round);
 
     // const codeInput = document.querySelector("#typed-code");
     // codeInput.value = "";
-}
+};
 
 function drawPlayers(playerlist, deadPlayerlist) {
 
@@ -69,7 +69,7 @@ export const displayTime = (roundTime) => {
             clearInterval(secondsVariable);
             return;
         }
-        console.log("displaying", roundTime / 1000, "seconds");
+        // console.log("displaying", roundTime / 1000, "seconds");
         if (roundTime % 1000 == 0) {
             timeDisplayElement.innerHTML = `${roundTime/1000}.0`;
         } else {
@@ -78,4 +78,4 @@ export const displayTime = (roundTime) => {
 
     }, 100);
 
-}
+};

@@ -1,13 +1,14 @@
 import io from "socket.io-client";
-
 import {
   generateLanes
 } from "./generators";
-
 import {
-  refreshUI,
-  displayTime
+  displayTime, refreshUI
 } from "./laneManagement";
+
+import { playLobbyMusic, switchToGameMusic } from './sounds';
+
+
 
 
 const serverHost = process.env.SERVER_HOST || "localhost:3000";
@@ -84,6 +85,7 @@ socket.on("game:started", () => {
   document.getElementById("round-number").style.visibility = "visible";
   document.getElementById("time-remaining-box").style.visibility = "visible";
   codeInput.focus();
+  switchToGameMusic();
 });
 
 //potvrda username
@@ -111,6 +113,7 @@ socket.on("refreshGameState", (gameState) => {
 //emitovanje zahteva za join
 joinRoomBtn.addEventListener("click", () => {
   socket.emit("room:join", roomCodeInput.value);
+  playLobbyMusic();
 });
 
 //povratne informacije o uspesnoj konekciji u sobu
