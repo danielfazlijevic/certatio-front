@@ -316,8 +316,8 @@ input {
   border-radius: 50%;
   background-color: rgb(214, 0, 64);
   text-align: center;
-  width: 64px;
-  height: 64px;
+  width: 96px;
+  height: 96px;
   display: flex;
   justify-content: center;
   align-items: center;
